@@ -36,5 +36,5 @@ public class SimulationResultEntity {
 
     @ManyToOne
     @JoinColumn(name = "simulation_id", nullable = false)
-    private SimulationEntity simulationParams;
+    private SimulationEntity simulation;
 }

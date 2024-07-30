@@ -3,6 +3,7 @@ package com.rest.diseasesimulapi.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -41,4 +42,7 @@ public class SimulationEntity {
 
     @Column(nullable = false, name = "simulation_duration")
     private Integer Ts;
+
+    @OneToMany(mappedBy = "simulation", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SimulationResultEntity> results;
 }
