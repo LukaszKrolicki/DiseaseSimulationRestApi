@@ -1,2 +1,6 @@
-package com.rest.diseasesimulapi.mappers;public interface Mapper {
+package com.rest.diseasesimulapi.mappers;
+
+public interface Mapper<A,B> {
+    B mapToDto(A a);
+    A mapToEntity(B b);
 }

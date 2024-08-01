@@ -1,4 +1,4 @@
-package com.rest.diseasesimulapi.domain;
+package com.rest.diseasesimulapi.domain.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "simulation_params")
+@Table(name = "simulations")
 public class SimulationEntity {
 
     @Id

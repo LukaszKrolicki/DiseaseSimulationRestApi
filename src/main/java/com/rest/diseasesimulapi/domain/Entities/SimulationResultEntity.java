@@ -1,5 +1,6 @@
-package com.rest.diseasesimulapi.domain;
+package com.rest.diseasesimulapi.domain.Entities;
 
+import com.rest.diseasesimulapi.domain.Entities.SimulationEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,19 +20,19 @@ public class SimulationResultEntity {
     @GeneratedValue()
     private UUID id;
 
-    @Column(nullable = false, name = "simulation_day")
+    @Column(name = "simulation_day", nullable = false)
     private Long day;
 
-    @Column(nullable = false, name = "people_infected")
+    @Column(name = "people_infected", nullable = false)
     private Long Pi;
 
-    @Column(nullable = false, name = "people_vulnerable")
+    @Column(name = "people_vulnerable", nullable = false)
     private Long Pv;
 
-    @Column(nullable = false, name = "people_dead")
+    @Column(name = "people_dead", nullable = false)
     private Long Pm;
 
-    @Column(nullable = false, name = "people_recovered_and_immune")
+    @Column(name = "people_recovered_and_immune", nullable = false)
     private Long Pr;
 
     @ManyToOne
