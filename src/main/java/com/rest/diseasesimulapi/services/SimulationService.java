@@ -9,11 +9,11 @@ import java.util.UUID;
 
 @Service
 public interface SimulationService {
-    List<SimulationResultDTO> createSimulation(SimulationDTO simulationDTO);
+    UUID createSimulation(SimulationDTO simulationDTO);
 
     List<SimulationResultDTO> getSimulationResults(UUID simulationId);
 
-    List<SimulationResultDTO> updateSimulation(UUID simulationId, SimulationDTO simulationDTO);
+    String updateSimulation(UUID simulationId, SimulationDTO simulationDTO);
 
     String deleteSimulation(UUID simulationId);
 }

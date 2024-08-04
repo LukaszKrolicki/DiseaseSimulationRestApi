@@ -49,7 +49,7 @@ public class SimulationServiceImpl implements SimulationService {
     }
 
     @Override
-    public List<SimulationResultDTO> createSimulation(SimulationDTO simulationDTO) {
+    public UUID createSimulation(SimulationDTO simulationDTO) {
         SimulationEntity simulation = simulationMapper.mapToEntity(simulationDTO);
         simulationRepository.save(simulation);
 
@@ -57,15 +57,11 @@ public class SimulationServiceImpl implements SimulationService {
 
         simulationResultRepository.saveAll(results);
 
-        List<SimulationResultDTO> resultDTOs = results.stream()
-                .map(simulationResultMapper::mapToDto)
-                .collect(Collectors.toList());
-
-        return resultDTOs;
+        return simulation.getSimulationId();
     }
 
     @Override
-    public List<SimulationResultDTO> updateSimulation(UUID simulationId, SimulationDTO simulationDTO) {
+    public String updateSimulation(UUID simulationId, SimulationDTO simulationDTO) {
         SimulationEntity simulation = simulationRepository.findById(simulationId)
                 .orElseThrow(() -> new EntityNotFoundException("Simulation with id " + simulationId + " not found"));
 
@@ -89,9 +85,7 @@ public class SimulationServiceImpl implements SimulationService {
 
         simulationResultRepository.saveAll(results);
 
-        return results.stream()
-                .map(simulationResultMapper::mapToDto)
-                .collect(Collectors.toList());
+        return "Simulation with id " + simulationId + " has been updated.";
     }
     @Override
     public String deleteSimulation(UUID simulationId) {
@@ -133,8 +127,8 @@ public class SimulationServiceImpl implements SimulationService {
                 deaths[day] = 0L;
             }
 
-            Pi = Math.max(0, Pi + newInfections[day] - recoveries[day] - deaths[day]);
-            Pv = Math.max(0, Pv - newInfections[day]);
+            Pi = Pi + newInfections[day] - recoveries[day] - deaths[day];
+            Pv = Pv - newInfections[day];
             Pm = Pm + deaths[day];
             Pr = Pr + recoveries[day];
 
